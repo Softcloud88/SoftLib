@@ -10,18 +10,17 @@ import java.util.List;
  */
 public class ActivityManager {
 
-    private static ActivityManager sInstance;
-
     private ActivityManager() {}
 
-    private List<Activity> activities;
-
-    public synchronized static ActivityManager getInstance() {
-        if (sInstance == null) {
-            sInstance = new ActivityManager();
-        }
-        return sInstance;
+    private static class SingletonHolder {
+        private static final ActivityManager INSTANCE = new ActivityManager();
     }
+
+    public static ActivityManager getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
+    private List<Activity> activities;
 
     public List<Activity> getActivities() {
         if (activities == null) {
