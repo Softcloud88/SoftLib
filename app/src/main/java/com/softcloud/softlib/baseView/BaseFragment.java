@@ -11,19 +11,22 @@ import android.view.ViewGroup;
 /**
  * Created by j-renzhexin on 2016/8/26.
  */
-public abstract class BaseFragment extends Fragment implements IBaseView{
+public abstract class BaseFragment extends Fragment {
 
     private LayoutInflater inflater;
-    private View rootView;
+    protected View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.inflater = inflater;
         rootView = inflater.inflate(getLayoutResId(), container, false);
+        setupView(inflater, rootView, savedInstanceState);
         return rootView;
     }
 
     protected abstract int getLayoutResId();
+
+    protected abstract void setupView(LayoutInflater inflater, View rootView, Bundle savedInstanceState);
 
     protected void launch(Class<? extends Activity> clazz) {
         launch(clazz, null);

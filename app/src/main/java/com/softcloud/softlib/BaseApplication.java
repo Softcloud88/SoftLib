@@ -12,6 +12,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        ApplicationInitializer.getInstance().initialze(this);
     }
 
     public static BaseApplication getInstance() {

@@ -13,7 +13,7 @@ public class ApplicationInitializer {
         private static final ApplicationInitializer INSTANCE = new ApplicationInitializer();
     }
 
-    public ApplicationInitializer getInstance() {
+    public static ApplicationInitializer getInstance() {
         return SingletonHolder.INSTANCE;
     }
 

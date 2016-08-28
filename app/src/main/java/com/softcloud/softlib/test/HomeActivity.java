@@ -9,6 +9,8 @@ import com.softcloud.softlib.utils.ViewAccessor;
 
 public class HomeActivity extends BaseActivity {
 
+    private View rootView;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_home;
@@ -16,10 +18,11 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void setupView(Bundle savedInstanceState) {
+        rootView = findViewById(R.id.v_root);
         ViewAccessor.create(rootView).setOnClickListener(R.id.btn_to_test, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                launchFragment(ApiTestFragment.class);
             }
         });
     }

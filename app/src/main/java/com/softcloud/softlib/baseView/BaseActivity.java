@@ -1,10 +1,12 @@
 package com.softcloud.softlib.baseView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
 import android.view.View;
 
 import com.softcloud.softlib.utils.ActivityManager;
@@ -12,7 +14,7 @@ import com.softcloud.softlib.utils.ActivityManager;
 /**
  * Created by j-renzhexin on 2016/8/25.
  */
-public abstract class BaseActivity extends AppCompatActivity implements IBaseView{
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected View rootView;
 
