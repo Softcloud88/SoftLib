@@ -18,7 +18,7 @@ public class ApiTestPresenter extends BasePresenter {
     }
 
     public void initData() {
-        getApiFactory().getMovieApi().getTopMovies(0, 2, new RequestCallback<Top250MovieModel>() {
+        addSubscription(getApiFactory().getMovieApi().getTopMovies(0, 2, new RequestCallback<Top250MovieModel>() {
             @Override
             public void onSuccess(Top250MovieModel model) {
                 view.renderMoviesInfo(model);
@@ -33,6 +33,6 @@ public class ApiTestPresenter extends BasePresenter {
             public void onError(Throwable e) {
                 view.toast("网络错误");
             }
-        });
+        }));
     }
 }
