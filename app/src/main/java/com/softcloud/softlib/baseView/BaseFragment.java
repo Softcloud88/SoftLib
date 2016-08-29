@@ -3,18 +3,29 @@ package com.softcloud.softlib.baseView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * Created by j-renzhexin on 2016/8/26.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements IBaseView{
 
-    private LayoutInflater inflater;
+    protected LayoutInflater inflater;
     protected View rootView;
+    protected IBasePresenter presenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = initPresenter();
+    }
+
+    protected abstract  IBasePresenter initPresenter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,6 +38,15 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutResId();
 
     protected abstract void setupView(LayoutInflater inflater, View rootView, Bundle savedInstanceState);
+
+    @Override
+    public void onDestroy() {
+        if (presenter != null) {
+            presenter.onDetach();
+            presenter = null;
+        }
+        super.onDestroy();
+    }
 
     protected void launch(Class<? extends Activity> clazz) {
         launch(clazz, null);
@@ -58,5 +78,10 @@ public abstract class BaseFragment extends Fragment {
 
     protected void launchFragment(Class<? extends BaseFragment> clazzFragment, int requestCode, Bundle args) {
         ReusingActivity.launchFragment(getActivity(), clazzFragment, requestCode, args);
+    }
+
+    @Override
+    public void toast(String msg) {
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 }
