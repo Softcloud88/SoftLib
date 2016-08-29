@@ -2,6 +2,8 @@ package com.softcloud.softlib.presenter;
 
 import com.softcloud.softlib.baseView.IBasePresenter;
 import com.softcloud.softlib.network.ApiManager;
+import com.softcloud.softlib.test.api.ApiFactory;
+import com.softcloud.softlib.test.api.ApiFactoryImpl;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -29,5 +31,9 @@ public class BasePresenter implements ApiManager, IBasePresenter {
     @Override
     public void onDetach() {
         cancelAll();
+    }
+
+    protected ApiFactory getApiFactory() {
+        return new ApiFactoryImpl();
     }
 }
