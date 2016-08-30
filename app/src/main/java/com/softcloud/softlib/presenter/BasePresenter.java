@@ -14,13 +14,20 @@ import rx.subscriptions.CompositeSubscription;
 public class BasePresenter implements ApiManager, IBasePresenter {
 
     private CompositeSubscription compositeSubscription;
-
-    protected void addSubscription(Subscription subscription) {
-        getCompositeSubscription().add(subscription);
-    }
+    private ApiFactory apiFactory;
 
     private rx.subscriptions.CompositeSubscription getCompositeSubscription() {
         return compositeSubscription != null ? compositeSubscription : new CompositeSubscription();
+    }
+
+    @Override
+    public void add(Subscription subscription) {
+        getCompositeSubscription().add(subscription);
+    }
+
+    @Override
+    public void cancel(Subscription subscription) {
+        getCompositeSubscription().remove(subscription);
     }
 
     @Override
@@ -34,6 +41,9 @@ public class BasePresenter implements ApiManager, IBasePresenter {
     }
 
     protected ApiFactory getApiFactory() {
-        return new ApiFactoryImpl();
+        if (apiFactory == null) {
+            apiFactory = new ApiFactoryImpl(this);
+        }
+        return apiFactory;
     }
 }
