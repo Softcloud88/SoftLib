@@ -3,7 +3,7 @@ apply plugin: 'com.neenbedankt.android-apt' // for dagger2
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.softcloud.softlib"
@@ -21,20 +21,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0-beta1'
-
-    compile 'io.reactivex:rxjava:1.1.9'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'com.google.code.gson:gson:2.7'
-
-    //region dagger2
-    apt 'com.google.dagger:dagger-compiler:2.5'
-    compile 'com.google.dagger:dagger:2.5'
-    provided 'javax.annotation:jsr250-api:1.0'
-    //endregion
+    compile project(':softframe')
 }

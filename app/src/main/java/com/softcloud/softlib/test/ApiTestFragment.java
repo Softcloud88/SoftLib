@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.softcloud.softlib.R;
-import com.softcloud.softlib.baseView.BaseFragment;
-import com.softcloud.softlib.baseView.IBasePresenter;
-import com.softcloud.softlib.test.model.Top250MovieModel;
-import com.softcloud.softlib.utils.ViewAccessor;
+import com.softcloud.softframe.baseView.BaseFragment;
+import com.softcloud.softframe.baseView.IBasePresenter;
+import com.softcloud.softframe.model.Top250MovieModel;
+import com.softcloud.softframe.utils.ViewAccessor;
 
 /**
  * Created by Softcloud on 16/8/28.

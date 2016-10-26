@@ -18,7 +18,7 @@
         </activity>
 
         <activity
-            android:name=".baseView.ReusingActivity"
+            android:name="com.softcloud.softframe.baseView.ReusingActivity"
             android:screenOrientation="portrait" />
 
     </application>

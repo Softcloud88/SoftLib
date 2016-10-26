@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.softcloud.softlib.R;
-import com.softcloud.softlib.baseView.BaseActivity;
-import com.softcloud.softlib.utils.ViewAccessor;
+import com.softcloud.softframe.baseView.BaseActivity;
+import com.softcloud.softframe.utils.ViewAccessor;
 
 public class HomeActivity extends BaseActivity {
 

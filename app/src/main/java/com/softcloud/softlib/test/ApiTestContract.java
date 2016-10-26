@@ -1,8 +1,8 @@
 package com.softcloud.softlib.test;
 
-import com.softcloud.softlib.baseView.IBasePresenter;
-import com.softcloud.softlib.baseView.IBaseView;
-import com.softcloud.softlib.test.model.Top250MovieModel;
+import com.softcloud.softframe.baseView.IBasePresenter;
+import com.softcloud.softframe.baseView.IBaseView;
+import com.softcloud.softframe.model.Top250MovieModel;
 
 /**
  * Created by j-renzhexin on 2016/8/29.
