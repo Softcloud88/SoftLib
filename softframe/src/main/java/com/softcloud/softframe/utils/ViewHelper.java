@@ -3,16 +3,17 @@ package com.softcloud.softframe.utils;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * Created by j-renzhexin on 2016/8/26.
+ * Created by j-renzhexin on 2016/10/28.
  */
+
 public class ViewHelper {
 
     public static void setTextNumber(TextView tv, int number) {
@@ -48,14 +49,24 @@ public class ViewHelper {
         if (tv != null) {
             tv.setText(text);
             if (colorId != 0) {
-                tv.setTextColor(ResUtils.getColor(colorId));
+                tv.setTextColor(ResHelper.getColor(colorId));
             }
+        }
+    }
+
+    public static void setText(TextView tv, CharSequence text, int colorId, boolean isBold) {
+        if (tv != null) {
+            tv.setText(text);
+            if (colorId != 0) {
+                tv.setTextColor(ResHelper.getColor(colorId));
+            }
+            tv.getPaint().setFakeBoldText(isBold);
         }
     }
 
     public static void setTextColor(TextView tv, int colorId) {
         if (tv != null && colorId != 0) {
-            tv.setTextColor(ResUtils.getColor(colorId));
+            tv.setTextColor(ResHelper.getColor(colorId));
         }
     }
 
@@ -63,7 +74,7 @@ public class ViewHelper {
         if (drawableResId == 0) {
             return;
         }
-        Drawable drawable = ResUtils.getDrawable(drawableResId);
+        Drawable drawable = ResHelper.getDrawable(drawableResId);
         if (tv != null && drawable != null) {
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tv.setCompoundDrawables(null, null, drawable, null);
@@ -74,7 +85,7 @@ public class ViewHelper {
         if (drawableResId == 0) {
             return;
         }
-        Drawable drawable = ResUtils.getDrawable(drawableResId);
+        Drawable drawable = ResHelper.getDrawable(drawableResId);
         if (tv != null && drawable != null) {
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tv.setCompoundDrawables(drawable, null, null, null);
@@ -83,7 +94,7 @@ public class ViewHelper {
 
     public static void setBackground(View view, int colorId) {
         if (view != null) {
-            view.setBackgroundColor(ResUtils.getColor(colorId));
+            view.setBackgroundColor(ResHelper.getColor(colorId));
         }
     }
 
@@ -95,7 +106,7 @@ public class ViewHelper {
 
     public static void setImage(ImageView iv, int imgResId) {
         if (iv != null) {
-            iv.setImageDrawable(ResUtils.getDrawable(imgResId));
+            iv.setImageDrawable(ResHelper.getDrawable(imgResId));
         }
     }
 
@@ -109,6 +120,13 @@ public class ViewHelper {
         if (view != null && (visibility == View.VISIBLE || visibility == View.INVISIBLE
                 || visibility == View.GONE)) {
             view.setVisibility(visibility);
+        }
+    }
+
+    public static void inflateViewStub(ViewStub vs, @LayoutRes int layoutResId) {
+        if (vs != null) {
+            vs.setLayoutResource(layoutResId);
+            vs.inflate();
         }
     }
 
@@ -132,52 +150,13 @@ public class ViewHelper {
 
     @SuppressWarnings("deprecation")
     public static void setBackground(View view, Drawable background) {
-        if (view == null)
+        if(view == null)
             return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(background);
-        } else {
+        }else
+        {
             view.setBackgroundDrawable(background);
         }
-    }
-
-    public static int getListViewHeightBasedOnChildren(ListView listView) {
-        int totalHeight = 0;
-        if (listView == null)
-            return totalHeight;
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
-            return totalHeight;
-        }
-
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        totalHeight = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        return totalHeight;
-    }
-
-    public static int getListViewWidthBasedOnChildren(ListView listView) {
-        int width = 0;
-        if (listView == null)
-            return width;
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
-            return width;
-        }
-
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            if (width < listItem.getMeasuredWidth()) {
-                width = listItem.getMeasuredWidth();
-            }
-        }
-        return width;
     }
 }

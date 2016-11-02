@@ -1,8 +1,11 @@
 package com.softcloud.softframe.utils;
 
+import android.util.Log;
+
 /**
- * Created by j-renzhexin on 2016/8/26.
+ * Created by j-renzhexin on 2016/10/28.
  */
+
 public class SafeCast {
     private static final String LOG_TAG = "type cast";
 
@@ -23,7 +26,7 @@ public class SafeCast {
         try {
             res = Integer.valueOf(value);
         } catch (Exception e) {
-            LogUtils.d(LOG_TAG, e.getMessage());
+            log(e);
         }
         return res;
     }
@@ -33,7 +36,7 @@ public class SafeCast {
         try {
             res = Integer.valueOf(value);
         } catch (Exception e) {
-            LogUtils.d(LOG_TAG, e.getMessage());
+            log(e);
         }
         return res;
     }
@@ -43,7 +46,7 @@ public class SafeCast {
         try {
             res = Double.valueOf(value);
         } catch (Exception e) {
-            LogUtils.d(LOG_TAG, e.getMessage());
+            log(e);
         }
         return res;
     }
@@ -53,8 +56,12 @@ public class SafeCast {
         try {
             res = Float.valueOf(value);
         } catch (Exception e) {
-            LogUtils.d(LOG_TAG, e.getMessage());
+            log(e);
         }
         return res;
+    }
+
+    private static void log(Exception e) {
+        Log.d(LOG_TAG, e.getMessage());
     }
 }

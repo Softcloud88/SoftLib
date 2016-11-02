@@ -2,10 +2,12 @@ package com.softcloud.softframe.utils;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 /**
- * Created by j-renzhexin on 2016/8/26.
+ * Created by j-renzhexin on 2016/11/1.
  */
+
 public class ArgumentHelper {
     private static final String LOG_TAG = "ArgumentHelper";
 
@@ -58,7 +60,7 @@ public class ArgumentHelper {
             try {
                 res = (T) args.getSerializable(key);
             } catch (Exception e) {
-                LogUtils.d(LOG_TAG, e.getMessage());
+                Log.d(LOG_TAG, e.getMessage());
             }
             return res;
         }
@@ -113,7 +115,7 @@ public class ArgumentHelper {
             try {
                 res = (T) data.getSerializableExtra(key);
             } catch (Exception e) {
-                LogUtils.d(LOG_TAG, e.getMessage());
+                Log.d(LOG_TAG, e.getMessage());
             }
             return res;
         }

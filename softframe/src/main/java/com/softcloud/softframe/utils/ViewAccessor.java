@@ -1,18 +1,21 @@
 package com.softcloud.softframe.utils;
 
 import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by j-renzhexin on 2016/8/26.
+ * Created by j-renzhexin on 2016/10/28.
  */
+
 public class ViewAccessor {
 
-    View rootView;
+    private View rootView;
 
-    protected ViewAccessor(View rootView) {
+    public ViewAccessor(View rootView) {
         this.rootView = rootView;
     }
 
@@ -120,6 +123,14 @@ public class ViewAccessor {
         return this;
     }
 
+    public ViewAccessor inflateViewStub(int viewStubId, @LayoutRes int layoutResId) {
+        View vs = rootView.findViewById(viewStubId);
+        if (vs != null && vs instanceof ViewStub) {
+            ViewHelper.inflateViewStub((ViewStub) vs, layoutResId);
+        }
+        return this;
+    }
+
     public ViewAccessor setEnabled(int viewId, boolean enable) {
         View v = rootView.findViewById(viewId);
         ViewHelper.setEnabled(v, enable);
@@ -137,4 +148,12 @@ public class ViewAccessor {
         ViewHelper.setOnTouchListener(v, listener);
         return this;
     }
+
+//    public ViewAccessor loadImage(@IdRes int imageViewId, String imgUrl, @DrawableRes int holderResId) {
+//        View v = rootView.findViewById(imageViewId);
+//        if (v instanceof ImageView && rootView.getContext() != null) {
+//            GlideUtils.load(rootView.getContext(), (ImageView) v, imgUrl, holderResId);
+//        }
+//        return this;
+//    }
 }
